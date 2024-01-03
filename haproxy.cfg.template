@@ -1,0 +1,14 @@
+global
+defaults
+frontend myfrontend
+    bind 0.0.0.0:80
+    default_backend mybackend
+
+resolvers mydns
+    parse-resolv-conf
+
+backend mybackend
+    balance roundrobin
+    option httpchk
+    http-check send meth GET uri ${BACKEND_HEALTHCHECK_URI}
+    server-template mybackend ${BACKEND_MIN_INSTANCES}-${BACKEND_MAX_INSTANCES} ${BACKEND_SLUG}-discovery.${LOCAL_DOMAIN}:${BACKEND_PORT} check resolvers mydns init-addr none

@@ -2,7 +2,7 @@ global
 defaults
 frontend myfrontend
     bind 0.0.0.0:80
-	default_backend mybackend
+    default_backend mybackend
 
 resolvers mydns
     parse-resolv-conf
@@ -10,5 +10,5 @@ resolvers mydns
 backend mybackend
     balance roundrobin
     option httpchk
-    http-check send meth GET  uri /check
+    http-check send meth GET uri /check
     server-template mybackend 1-5 backend-kuip-discovery.usr-bupfjt793em8dprtcjn0.svc.cluster.local:10000 check resolvers mydns init-addr none
