@@ -1,0 +1,16 @@
+services:
+- type: web
+  name: haproxy-example
+  env: docker
+  autoDeploy: false
+  envVars:
+  - key: BACKEND_SLUG
+    sync: false
+  - key: BACKEND_PORT
+    sync: false
+  - key: BACKEND_HEALTHCHECK_URI
+    sync: false
+  - key: BACKEND_MIN_INSTANCES
+    sync: false
+  - key: BACKEND_MAX_INSTANCES
+    sync: false
